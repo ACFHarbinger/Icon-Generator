@@ -7,7 +7,7 @@ Description: Serverless Backend stack for the Icon Generator.
 
 Resources:
   # DynamoDB Database Table
-  Icon_generatorTable:
+  IconGeneratorTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
@@ -18,7 +18,7 @@ Resources:
         WriteCapacityUnits: 5
 
   # Lambda Function
-  Icon_generatorFunction:
+  IconGeneratorFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: handler.lambda_handler
@@ -26,10 +26,10 @@ Resources:
       CodeUri: ./src
       Environment:
         Variables:
-          TABLE_NAME: !Ref Icon_generatorTable
+          TABLE_NAME: !Ref IconGeneratorTable
       Policies:
         - DynamoDBCrudPolicy:
-            TableName: !Ref Icon_generatorTable
+            TableName: !Ref IconGeneratorTable
       Events:
         ApiEvent:
           Type: Api
